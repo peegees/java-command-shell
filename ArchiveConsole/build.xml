@@ -1,0 +1,30 @@
+<project name="MyProject" default="build" basedir=".">
+
+    <property name="outRoot" location="out/onejar"/>
+    <property name="shellLib" location="./out/artifacts/Shell_jar/Shell.jar"/>
+    <property name="commands" location="./out/artifacts/Commands_jar/"/>
+
+    <target name="build" depends="clean">
+        <!-- handle one jar -->
+        <unzip src="oneJar/one-jar-boot-0.97.jar" dest="${outRoot}"/>
+        <delete dir="${outRoot}/src"/>
+        <delete file="${outRoot}/OneJar.class"/>
+
+        <!-- copy shell jar to main dir-->
+        <copy file="${shellLib}" todir="${outRoot}/main"/>
+        <echo file="${outRoot}/boot-manifest.mf" append="true">One-Jar-Main-Class: com.opi.cli.Run</echo>
+
+        <!-- copy archive command and libs to lib dir -->
+        <copy todir="${outRoot}/lib">
+            <fileset dir="${commands}"/>
+        </copy>
+
+        <!-- create the resulting one jar - archiveCmd.jar-->
+        <jar destfile="out/archiveCmd.jar" basedir="${outRoot}" manifest="${outRoot}/META-INF/MANIFEST.MF"/>
+        <copy file="out/archiveCmd.jar" todir="."/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${outRoot}"/>
+    </target>
+</project>

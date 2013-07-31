@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Class-Path: jcl-over-slf4j-1.6.1.jar junit-4.10.jar commons-codec-1.6.
+ jar slf4j-jdk14-1.6.1.jar apache-solr-solrj-3.6.2.jar httpmime-4.2.5.
+ jar jline-2.11.jar httpcore-4.2.4.jar commons-httpclient-3.1.jar slf4
+ j-api-1.6.1.jar commons-io-2.1.jar httpclient-4.2.5.jar
+Main-Class: 
+
